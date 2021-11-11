@@ -1,9 +1,8 @@
 from csv_service import CSVService #importing CSVService, to read/write data to csv
-from contacts import Contacts #importing Contacts class to structure and query contacts
+from contact import Contact #importing Contacts class to structure and query contacts
 
 password = "Secret"
 filename = "contacts.csv"
-contact_list = []
 
 #creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
@@ -19,6 +18,36 @@ def menu():
     6) Other
     """)
 
+def menu1():
+    #gets requested info from user
+    id = input("ID: ")
+    fname = input("First Name: ")
+    lname = input("Last Name: ")
+    company = input("Company : ")
+    address = input("Address: ")
+    landline = input("Landline: ")
+    mobile = input("Mobile: ")
+    category = input("Category: ")
+    creation_date = input("Creation date : ")
+    update_date = input("Todays Date: ")
+    modified_by = input("Users name: ")
+    #adds info to list
+    new_contact =[id,fname,lname,company,address,landline,mobile,category,creation_date,update_date,modified_by]
+    #adds info, as a Contact instance, to contact list
+    Contact.contact_list.append(Contact(new_contact))
+
+
+def load_data():
+    # using CSVService read_data method to read in contacts.csv
+    instance.read_data()
+
+    #sends list containing header to Contact object, appending to first position in contact_list
+    Contact.contact_list.append(Contact(instance.header))
+
+    #Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
+    for data in instance.data:
+        Contact.contact_list.append(Contact(data))
+
 while True:
     #prompting user for password
     usrpswrd=input("Please enter password >>")
@@ -26,38 +55,33 @@ while True:
     if usrpswrd == password:
         print("Password Correct!")
 
-        # using CSVService read_data method to read in contacts.csv
-        instance.read_data()
+        #calls function which reads csv file via csv_service
+        #then pulls data into instances of Contacts oject and stores in contact_list
+        load_data()
 
-        #sends list containing header to Contacts object, appending to first position in contact_list
-        contact_list.append(Contacts(instance.header))
-        #Loops through lists contained within instance.data, adding each entry as a Contacts object after header in contact_list
-        for data in instance.data:
-            contact_list.append(Contacts(data))
-
-        # for contact in contact_list:
-        #     print(contact.id)
-
-        #while True:
+        while True:
             #calls on menu function
+            menu()
 
-            # menu()
-            # userinput = input(">")
-            # if userinput == "1":
-            #     print("Option 1 Selected")
-            # elif userinput == "2":
-            #     print("Option 2 Selected")
-            # elif userinput == "3":
-            #     print("Option 3 Selected")
-            # elif userinput == "4":
-            #     print("Option 4 Selected")
-            # elif userinput == "5":
-            #     print("Option 5 Selected")
-            # elif userinput == "6":
-            #     print("Option 6 Selected")
-            #
-            # else:
-            #     print("Incorrect Choice - Please choose again")
+            userinput = input(">")
+            if userinput == "1":
+                print("Option 1 Selected")
+                menu1()
+            elif userinput == "2":
+                # for con in Contact.contact_list:
+                #     print(con.id)
+                print("Option 2 Selected")
+            elif userinput == "3":
+                print("Option 3 Selected")
+            elif userinput == "4":
+                print("Option 4 Selected")
+            elif userinput == "5":
+                print("Option 5 Selected")
+            elif userinput == "6":
+                print("Option 6 Selected")
 
-    # else:
-    #     print("Incorrect password: Access Denied")
+            else:
+                print("Incorrect Choice - Please choose again")
+
+    else:
+        print("Incorrect password: Access Denied")
