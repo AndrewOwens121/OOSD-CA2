@@ -24,8 +24,7 @@ class CSVService:
     #         item.append(avg)
 
     def write_data(self):
-        with open("examdata1.csv","w") as csvfile:
+        with open(self.filename,"w") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(self.header)
             csv_writer.writerows(self.data)
-            print("*")
