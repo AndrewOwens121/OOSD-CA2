@@ -1,9 +1,10 @@
 from csv_service import CSVService #importing CSVService, to read/write data to csv
 from contact import Contact #importing Contacts class to structure and query contacts
+from contact_list import Contact_List #importing Contact_list to store contacts
 
 password = "Secret"
 filename = "contacts.csv"
-
+contact_list = Contact_List
 #creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
 
@@ -18,7 +19,7 @@ def menu():
     6) Other
     """)
 
-def menu1():
+def option1():
     #gets requested info from user
     id = input("ID: ")
     fname = input("First Name: ")
@@ -34,7 +35,9 @@ def menu1():
     #adds info to list
     new_contact =[id,fname,lname,company,address,landline,mobile,category,creation_date,update_date,modified_by]
     #adds info, as a Contact instance, to contact list
-    Contact.contact_list.append(Contact(new_contact))
+    Contact_List.contact_list.append(Contact(new_contact))
+
+    print("Successfully added Contact!")
 
 
 def load_data():
@@ -42,11 +45,11 @@ def load_data():
     instance.read_data()
 
     #sends list containing header to Contact object, appending to first position in contact_list
-    Contact.contact_list.append(Contact(instance.header))
+    Contact_List.contact_list.append(Contact(instance.header))
 
     #Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
     for data in instance.data:
-        Contact.contact_list.append(Contact(data))
+        Contact_List.contact_list.append(Contact(data))
 
 while True:
     #prompting user for password
@@ -66,10 +69,10 @@ while True:
             userinput = input(">")
             if userinput == "1":
                 print("Option 1 Selected")
-                menu1()
+                option1()
             elif userinput == "2":
-                # for con in Contact.contact_list:
-                #     print(con.id)
+                for con in Contact_List.contact_list:
+                    print(con.id)
                 print("Option 2 Selected")
             elif userinput == "3":
                 print("Option 3 Selected")
