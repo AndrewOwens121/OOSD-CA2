@@ -1,11 +1,12 @@
-from csv_service import CSVService #importing CSVService, to read/write data to csv
-from contact import Contact #importing Contacts class to structure and query contacts
+from csv_service import CSVService  # importing CSVService, to read/write data to csv
+from contact import Contact  # importing Contacts class to structure and query contacts
 
 password = "Secret"
 filename = "contacts.csv"
-contact_list=[]
-#creating an instance of the CSVService class and passing it the contacts.csv filename
+contact_list = []
+# creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
+
 
 # mainmenu to be called multiple times
 def menu():
@@ -18,8 +19,9 @@ def menu():
     6) Other
     """)
 
+
 def option1():
-    #gets requested info from user
+    # gets requested info from user
     id = input("ID: ")
     fname = input("First Name: ")
     lname = input("Last Name: ")
@@ -31,15 +33,20 @@ def option1():
     creation_date = input("Creation date : ")
     update_date = input("Todays Date: ")
     modified_by = input("Users name: ")
-    #adds info to list
-    new_contact =[id,fname,lname,company,address,landline,mobile,category,creation_date,update_date,modified_by]
-    #adds info, as a Contact instance, to contact list
+    # adds info to list
+    new_contact = [id, fname, lname, company, address, landline, mobile, category, creation_date, update_date,
+                   modified_by]
+    # adds info, as a Contact instance, to contact list
     contact_list.append(Contact(new_contact))
 
     print("Successfully added Contact!")
 
+
 def option2():
-    # search function
+    """
+    Function to Search Contact_list for user input covering all fields
+    :return: Confirmation of Record existing - and some other of the Records data (depending on search type)
+    """
     print("""Please select which field you would like to search:
     1:  ID
     2:  First Name
@@ -54,59 +61,164 @@ def option2():
 
     userinput = input("Please Enter Search Choice >>")
 
+    #ID Search Below
     if userinput == "1":
         print("ID Search Selected")
         userchoice = input("Please Enter ID >>")
         for item in contact_list:
             if item.id == userchoice:
-                print(f"Match Found! - This ID Relates to {item.fname} {item.lname}")
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
                 break
         else:
             print("No Match Found!")
+
+    # First Name Search below
     elif userinput == "2":
         print("First Name Search Selected")
+        userchoice = input("Please Enter First Name >>")
+        for item in contact_list:
+            if item.fname == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Last Name Search below
     elif userinput == "3":
         print("Last Name Search Selected")
+        userchoice = input("Please Enter last Name >>")
+        for item in contact_list:
+            if item.lname == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Company Search Below
     elif userinput == "4":
         print("Company Search Selected")
+        userchoice = input("Please Enter Company Name >>")
+        for item in contact_list:
+            if item.company == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Address Search Below
     elif userinput == "5":
-        print("Phone (Landline) Search Selected")
+        print("Address Search Selected")
+        userchoice = input("Please Enter Address >>")
+        for item in contact_list:
+            if item.address == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Landline Search Below
     elif userinput == "6":
         print("Phone (Landline) Search Selected")
+        userchoice = input("Please Enter Address >>")
+        for item in contact_list:
+            if item.landline == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Mobile Search Below
     elif userinput == "7":
-        print("Last Name Search Selected")
+        print("Mobile Phone Search Selected")
+        userchoice = input("Please Enter Mobile Number >>")
+        for item in contact_list:
+            if item.mobile == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Category Search Seleted
     elif userinput == "8":
-        print("Company Search Selected")
+        print("Category Search Selected")
+        userchoice = input("Please Enter Category >>")
+        for item in contact_list:
+            if item.category == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Creation Date Search
     elif userinput == "9":
-        print("Phone (Landline) Search Selected")
+        print("Creation Date Search Selected")
+        userchoice = input("Please Enter Category >>")
+        for item in contact_list:
+            if item.reation_date == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Update Date Search
     elif userinput == "10":
-        print("Phone (Landline) Search Selected")
+        print("Update Date Search Selected")
+        userchoice = input("Please Enter Update Date >>")
+        for item in contact_list:
+            if item.update_date == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
+
+    # Update Date Search
+    elif userinput == "11":
+        print("Modified By Search Selected")
+        userchoice = input("Please Enter Username >>")
+        for item in contact_list:
+            if item.modified_by == userchoice:
+                print(
+                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                break
+        else:
+            print("No Match Found!")
 
 
 def load_data():
     # using CSVService read_data method to read in contacts.csv
     instance.read_data()
 
-    #sends list containing header to Contact object, appending to first position in contact_list
+    # sends list containing header to Contact object, appending to first position in contact_list
     contact_list.append(Contact(instance.header))
 
-    #Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
+    # Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
     for data in instance.data:
         contact_list.append(Contact(data))
 
+
 while True:
-    #prompting user for password
-    usrpswrd=input("Please enter password >>")
+    # prompting user for password
+    usrpswrd = input("Please enter password >>")
 
     if usrpswrd == password:
         print("Password Correct!")
 
-        #calls function which reads csv file via csv_service
-        #then pulls data into instances of Contacts oject and stores in contact_list
+        # calls function which reads csv file via csv_service
+        # then pulls data into instances of Contacts oject and stores in contact_list
         load_data()
 
         while True:
-            #calls on menu function
+            # calls on menu function
             menu()
 
             userinput = input(">")
