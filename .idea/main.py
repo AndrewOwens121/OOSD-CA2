@@ -15,9 +15,10 @@ def menu():
     2) Search for a Contact
     3) Update a Contact
     4) Remove a Contact
-    5) Search
+    5) Reports
     6) Other
     """)
+
 
 # Add Contact Function
 def option1():
@@ -45,6 +46,7 @@ def option1():
 
     print("Successfully added Contact!")
 
+
 # Search Contact Function
 def option2():
     """
@@ -65,7 +67,7 @@ def option2():
 
     userinput = input("Please Enter Search Choice >>")
 
-    #ID Search Below
+    # ID Search Below
     if userinput == "1":
         print("ID Search Selected")
         userchoice = input("Please Enter ID >>")
@@ -197,10 +199,11 @@ def option2():
         else:
             print("No Match Found!")
 
+
 # Edit/Update Function
 def option3():
-    #Taking in ID of targetted contact from user
-    userID=input("Please Enter the ID of the Record to be Changed: ")
+    # Taking in ID of targetted contact from user
+    userID = input("Please Enter the ID of the Record to be Changed: ")
 
     # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
     for con in contact_list:
@@ -226,10 +229,10 @@ def option3():
     11: Modified by (Person's Name)
     0:  Main Menu""")
 
-    #Taking user's input of selection
+    # Taking user's input of selection
     user_choice = input(">>")
 
-    #Actioning the users selection with Setters in Contact Class
+    # Actioning the users selection with Setters in Contact Class
     if user_choice == "1":
         edit = input("Please Enter The New Value: ")
         temp.set_id(edit)
@@ -278,10 +281,11 @@ def option3():
     else:
         print("Invalid Input!")
 
+
 # Remove Record Function
 def option4():
-    #Taking in ID of targetted contact from user
-    userID=input("Please Enter the ID of the Record to be Changed: ")
+    # Taking in ID of targetted contact from user
+    userID = input("Please Enter the ID of the Record to be Changed: ")
 
     # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
     for con in contact_list:
@@ -296,10 +300,50 @@ def option4():
     answer = input("Is this the User you wish to Remove? Type yes/no").lower()
 
     if answer == "yes":
-        #Removing selected record from contact_list
+        # Removing selected record from contact_list
         contact_list.remove(temp)
     else:
         print("Please Choose another ID - Use the search function to find ID choice")
+
+
+# Reports Function
+def option5():
+
+    # Initialises empty list to add contacts to
+    display_list = []
+
+    # Sub-Menu
+    userinput = input("""Choose Report:
+    1: Full List of Contacts
+    2: List of Development Contacts
+    3: List of Support Contacts
+    4: List of Office Fitting Contacts\n>""")
+
+    # Conditionals to choose which report to run
+    if userinput == "1":
+        for contact in contact_list:
+            print(contact.get_full_detail())
+
+    if userinput == "2":
+        print("Development Category List:")
+        for contact in contact_list:
+            if contact.get_category() == "Development":
+                display_list.append(contact)
+                print(vars(contact))
+
+    if userinput == "3":
+        print("Support Category List:")
+        for contact in contact_list:
+            if contact.get_category() == "Support":
+                display_list.append(contact)
+                print(vars(contact))
+
+    if userinput == "4":
+        print("Support Office Fitting List:")
+        for contact in contact_list:
+            if contact.get_category() == "Office Fitting":
+                display_list.append(contact)
+                print(vars(contact))
 
 
 # Function to Read/Write to CSV file
@@ -314,7 +358,7 @@ def load_data():
     for data in instance.data:
         contact_list.append(Contact(data))
 
-
+# Main Code
 while True:
     # prompting user for password
     usrpswrd = input("Please enter password >>")
@@ -346,6 +390,7 @@ while True:
                 option4()
             elif userinput == "5":
                 print("Option 5 Selected")
+                option5()
             elif userinput == "6":
                 print("Option 6 Selected")
 
