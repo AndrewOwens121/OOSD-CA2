@@ -19,8 +19,12 @@ def menu():
     6) Other
     """)
 
-
+# Add Contact Function
 def option1():
+    """
+    Function to add a new contact to the database
+    :return:
+    """
     # gets requested info from user
     id = input("ID: ")
     fname = input("First Name: ")
@@ -41,7 +45,7 @@ def option1():
 
     print("Successfully added Contact!")
 
-
+# Search Contact Function
 def option2():
     """
     Function to Search Contact_list for user input covering all fields
@@ -68,7 +72,7 @@ def option2():
         for item in contact_list:
             if item.id == userchoice:
                 print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
+                    f"Match Found!\nID: {item.id}\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
                 break
         else:
             print("No Match Found!")
@@ -198,6 +202,7 @@ def option3():
     #Taking in ID of targetted contact from user
     userID=input("Please Enter the ID of the Record to be Changed: ")
 
+    # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
     for con in contact_list:
         if userID == con.id:
             temp = con
@@ -206,8 +211,7 @@ def option3():
     else:
         print("User ID not found")
 
-
-
+    # Printing List of Editable attributes
     print("""Please select which field you would like to edit:
     1:  ID
     2:  First Name
@@ -218,23 +222,61 @@ def option3():
     7:  Phone (Mobile)
     8:  Category (Development | Support | Office Fitting
     9:  Date Created
-    10: Modified by (Person's Name)""")
+    10: Update Date
+    11: Modified by (Person's Name)
+    0:  Main Menu""")
 
+    #Taking user's input of selection
     user_choice = input(">>")
+
+    #Actioning the users selection with Setters in Contact Class
     if user_choice == "1":
-        edit = input("Please Enter The New Value")
+        edit = input("Please Enter The New Value: ")
         temp.set_id(edit)
-    # if user_choice == "2":
-    #     print()
-    # elif user_choice == "3":
-    # elif user_choice == "4":
-    # elif user_choice == "5":
-    # elif user_choice == "6":
-    # elif user_choice == "7":
-    # elif user_choice == "8":
-    # elif user_choice == "9":
-    # elif user_choice == "10":
-    # elif user_choice == "11":
+
+    elif user_choice == "2":
+        edit = input("Please Enter The New Value: ")
+        temp.set_fname(edit)
+
+    elif user_choice == "3":
+        edit = input("Please Enter The New Value: ")
+        temp.set_lname(edit)
+
+    elif user_choice == "4":
+        edit = input("Please Enter The New Value: ")
+        temp.set_company(edit)
+
+    elif user_choice == "5":
+        edit = input("Please Enter The New Value: ")
+        temp.set_address(edit)
+
+    elif user_choice == "6":
+        edit = input("Please Enter The New Value: ")
+        temp.set_landline(edit)
+
+    elif user_choice == "7":
+        edit = input("Please Enter The New Value: ")
+        temp.set_mobile(edit)
+
+    elif user_choice == "8":
+        edit = input("Please Enter The New Value: ")
+        temp.set_category(edit)
+
+    elif user_choice == "9":
+        edit = input("Please Enter The New Value: ")
+        temp.set_creation_date(edit)
+
+    elif user_choice == "10":
+        edit = input("Please Enter The New Value: ")
+        temp.set_update_date(edit)
+
+    elif user_choice == "11":
+        edit = input("Please Enter The New Value: ")
+        temp.set_modified_by(edit)
+
+    # Invalid input and 0 - Returns to Main Menu
+    else:
+        print("Invalid Input!")
 
 def load_data():
     # using CSVService read_data method to read in contacts.csv
@@ -252,6 +294,7 @@ while True:
     # prompting user for password
     usrpswrd = input("Please enter password >>")
 
+    # checking user input against hardcoded password
     if usrpswrd == password:
         print("Password Correct!")
 
@@ -284,4 +327,4 @@ while True:
                 print("Incorrect Choice - Please choose again")
 
     else:
-        print("Incorrect password: Access Denied")
+        print("Incorrect password: Try Again")
