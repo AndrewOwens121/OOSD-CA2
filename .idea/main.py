@@ -278,6 +278,31 @@ def option3():
     else:
         print("Invalid Input!")
 
+# Remove Record Function
+def option4():
+    #Taking in ID of targetted contact from user
+    userID=input("Please Enter the ID of the Record to be Changed: ")
+
+    # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
+    for con in contact_list:
+        if userID == con.id:
+            temp = con
+            print(f"User {con.fname} {con.lname} Selected")
+            break
+    else:
+        print("User ID not found")
+
+    # Verifying that the Record selected is to be deleted
+    answer = input("Is this the User you wish to Remove? Type yes/no").lower()
+
+    if answer == "yes":
+        #Removing selected record from contact_list
+        contact_list.remove(temp)
+    else:
+        print("Please Choose another ID - Use the search function to find ID choice")
+
+
+# Function to Read/Write to CSV file
 def load_data():
     # using CSVService read_data method to read in contacts.csv
     instance.read_data()
@@ -318,6 +343,7 @@ while True:
                 option3()
             elif userinput == "4":
                 print("Option 4 Selected")
+                option4()
             elif userinput == "5":
                 print("Option 5 Selected")
             elif userinput == "6":
