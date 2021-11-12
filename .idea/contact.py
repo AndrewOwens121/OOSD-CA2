@@ -1,6 +1,4 @@
 class Contact:
-    #list which contains Contact instances
-    contact_list =[]
 
     #initialise Student Class, takes in a list, assigning the required elements to corresponding attributes
     def __init__(self,new_contact=[]):

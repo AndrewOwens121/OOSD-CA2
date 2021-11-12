@@ -1,10 +1,9 @@
 from csv_service import CSVService #importing CSVService, to read/write data to csv
 from contact import Contact #importing Contacts class to structure and query contacts
-from contact_list import Contact_List #importing Contact_list to store contacts
 
 password = "Secret"
 filename = "contacts.csv"
-contact_list = Contact_List
+contact_list=[]
 #creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
 
@@ -35,9 +34,53 @@ def option1():
     #adds info to list
     new_contact =[id,fname,lname,company,address,landline,mobile,category,creation_date,update_date,modified_by]
     #adds info, as a Contact instance, to contact list
-    Contact_List.contact_list.append(Contact(new_contact))
+    contact_list.append(Contact(new_contact))
 
     print("Successfully added Contact!")
+
+def option2():
+    # search function
+    print("""Please select which field you would like to search:
+    1:  ID
+    2:  First Name
+    3:  Last Name
+    4:  Company
+    5:  Address
+    6:  Phone (Landline)
+    7:  Phone (Mobile)
+    8:  Category (Development | Support | Office Fitting
+    9:  Date Created
+    10: Modified by (Person's Name)""")
+
+    userinput = input("Please Enter Search Choice >>")
+
+    if userinput == "1":
+        print("ID Search Selected")
+        userchoice = input("Please Enter ID >>")
+        for item in contact_list:
+            if item.id == userchoice:
+                print(f"Match Found! - This ID Relates to {item.fname} {item.lname}")
+                break
+        else:
+            print("No Match Found!")
+    elif userinput == "2":
+        print("First Name Search Selected")
+    elif userinput == "3":
+        print("Last Name Search Selected")
+    elif userinput == "4":
+        print("Company Search Selected")
+    elif userinput == "5":
+        print("Phone (Landline) Search Selected")
+    elif userinput == "6":
+        print("Phone (Landline) Search Selected")
+    elif userinput == "7":
+        print("Last Name Search Selected")
+    elif userinput == "8":
+        print("Company Search Selected")
+    elif userinput == "9":
+        print("Phone (Landline) Search Selected")
+    elif userinput == "10":
+        print("Phone (Landline) Search Selected")
 
 
 def load_data():
@@ -45,11 +88,11 @@ def load_data():
     instance.read_data()
 
     #sends list containing header to Contact object, appending to first position in contact_list
-    Contact_List.contact_list.append(Contact(instance.header))
+    contact_list.append(Contact(instance.header))
 
     #Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
     for data in instance.data:
-        Contact_List.contact_list.append(Contact(data))
+        contact_list.append(Contact(data))
 
 while True:
     #prompting user for password
@@ -71,9 +114,8 @@ while True:
                 print("Option 1 Selected")
                 option1()
             elif userinput == "2":
-                for con in Contact_List.contact_list:
-                    print(con.id)
                 print("Option 2 Selected")
+                option2()
             elif userinput == "3":
                 print("Option 3 Selected")
             elif userinput == "4":
