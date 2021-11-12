@@ -193,6 +193,48 @@ def option2():
         else:
             print("No Match Found!")
 
+# Edit/Update Function
+def option3():
+    #Taking in ID of targetted contact from user
+    userID=input("Please Enter the ID of the Record to be Changed: ")
+
+    for con in contact_list:
+        if userID == con.id:
+            temp = con
+            print(f"User {con.fname} {con.lname} Selected")
+            break
+    else:
+        print("User ID not found")
+
+
+
+    print("""Please select which field you would like to edit:
+    1:  ID
+    2:  First Name
+    3:  Last Name
+    4:  Company
+    5:  Address
+    6:  Phone (Landline)
+    7:  Phone (Mobile)
+    8:  Category (Development | Support | Office Fitting
+    9:  Date Created
+    10: Modified by (Person's Name)""")
+
+    user_choice = input(">>")
+    if user_choice == "1":
+        edit = input("Please Enter The New Value")
+        temp.set_id(edit)
+    # if user_choice == "2":
+    #     print()
+    # elif user_choice == "3":
+    # elif user_choice == "4":
+    # elif user_choice == "5":
+    # elif user_choice == "6":
+    # elif user_choice == "7":
+    # elif user_choice == "8":
+    # elif user_choice == "9":
+    # elif user_choice == "10":
+    # elif user_choice == "11":
 
 def load_data():
     # using CSVService read_data method to read in contacts.csv
@@ -230,6 +272,7 @@ while True:
                 option2()
             elif userinput == "3":
                 print("Option 3 Selected")
+                option3()
             elif userinput == "4":
                 print("Option 4 Selected")
             elif userinput == "5":
