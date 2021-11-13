@@ -4,6 +4,7 @@ from contact import Contact  # importing Contacts class to structure and query c
 password = "Secret"
 filename = "contacts.csv"
 contact_list = []
+write_list = []
 # creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
 
@@ -16,7 +17,7 @@ def menu():
     3) Update a Contact
     4) Remove a Contact
     5) Reports
-    6) Other
+    6) Exit
     """)
 
 
@@ -203,13 +204,13 @@ def option2():
 # Edit/Update Function
 def option3():
     # Taking in ID of targetted contact from user
-    userID = input("Please Enter the ID of the Record to be Changed: ")
+    userID = input("Please Enter the ID of the Record to be Updated: ")
 
     # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
     for con in contact_list:
         if userID == con.id:
             temp = con
-            print(f"User {con.fname} {con.lname} Selected")
+            print(f"User '{con.fname} {con.lname}' Selected")
             break
     else:
         print("User ID not found")
@@ -285,13 +286,13 @@ def option3():
 # Remove Record Function
 def option4():
     # Taking in ID of targetted contact from user
-    userID = input("Please Enter the ID of the Record to be Changed: ")
+    userID = input("Please Enter the ID of the Record to be Removed: ")
 
     # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
     for con in contact_list:
         if userID == con.id:
             temp = con
-            print(f"User {con.fname} {con.lname} Selected")
+            print(f"User '{con.fname} {con.lname}' Selected")
             break
     else:
         print("User ID not found")
@@ -346,6 +347,20 @@ def option5():
                 print(vars(contact))
 
 
+#Exit Function
+def option6():
+    userinput=input("""***Exit Selected***
+    Would you like to save your work? Y/N""").lower()
+
+    if userinput == "y":
+        write_data()
+        print("Saved Successfully!")
+    else:
+        print("Exit - Unsaved")
+
+
+
+
 # Function to Read/Write to CSV file
 def load_data():
     # using CSVService read_data method to read in contacts.csv
@@ -357,6 +372,15 @@ def load_data():
     # Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
     for data in instance.data:
         contact_list.append(Contact(data))
+
+# Function to Write to CSV faile
+def write_data():
+
+    for contact in contact_list:
+        temp=[contact.get_id(),contact.get_fname(),contact.get_lname(),contact.get_company(),contact.get_address(),contact.get_landline(),contact.get_mobile(),contact.get_category(),contact.get_creation_date(),contact.get_update_date(),contact.get_modified_by()]
+        write_list.append(temp)
+    # using CSVService read_data method to read in contacts.csv
+    instance.write_data(write_list)
 
 # Main Code
 while True:
@@ -393,6 +417,7 @@ while True:
                 option5()
             elif userinput == "6":
                 print("Option 6 Selected")
+                option6()
 
             else:
                 print("Incorrect Choice - Please choose again")

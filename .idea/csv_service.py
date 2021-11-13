@@ -13,8 +13,9 @@ class CSVService:
             for row in readCSV:
                 self.data.append(row)
 
-    def write_data(self):
-        with open(self.filename,"w") as csvfile:
+    def write_data(self,data=[]):
+        with open(self.filename,"w", newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
-            csv_writer.writerow(self.header)
+            self.data = data
+            #csv_writer.writerow(self.header)
             csv_writer.writerows(self.data)
