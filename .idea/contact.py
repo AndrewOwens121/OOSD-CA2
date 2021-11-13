@@ -24,28 +24,28 @@ class Contact:
     def set_lname(self, new_lname):
         self.lname = new_lname
 
-    def set_company(self):
+    def set_company(self, new_company):
         self.company = new_company
 
-    def set_address(self):
+    def set_address(self, new_address):
         self.address = new_address
 
-    def set_landline(self):
-        self.landline = new_landlin
+    def set_landline(self, new_landline):
+        self.landline = new_landline
 
-    def set_mobile(self):
+    def set_mobile(self, new_mobile):
         self.mobile = new_mobile
 
-    def set_category(self):
+    def set_category(self, new_category):
         self.category = new_category
 
-    def set_creation_date(self):
+    def set_creation_date(self, new_creation_date):
         self.creation_date = new_creation_date
 
-    def set_update_date(self):
+    def set_update_date(self, new_update_date):
         self.update_date = new_update_date
 
-    def set_modified_by(self):
+    def set_modified_by(self, new_modified_by):
         self.modified_by = new_modified_by
 
     # Getters
