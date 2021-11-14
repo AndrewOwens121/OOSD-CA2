@@ -99,157 +99,281 @@ def option2():
 
     # ID Search Below
     if userinput == "1":
+
+        temp = []
+
         print("ID Search Selected")
         userchoice = input("Please Enter ID >>")
+
         for item in contact_list:
             if item.id == userchoice:
-                print(
-                    f"Match Found!\nID: {item.id}\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                    temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
+
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
 
     # First Name Search below
     elif userinput == "2":
+
+        temp = []
+
         print("First Name Search Selected")
         userchoice = input("Please Enter First Name >>")
+
         for item in contact_list:
-            if item.fname == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+            if item.get_fname() == userchoice:
+                temp.append(vars(item))
+
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Last Name Search below
     elif userinput == "3":
+
+        temp = []
+
         print("Last Name Search Selected")
         userchoice = input("Please Enter last Name >>")
         for item in contact_list:
             if item.lname == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Company Search Below
     elif userinput == "4":
+
+        temp = []
+
         print("Company Search Selected")
         userchoice = input("Please Enter Company Name >>")
         for item in contact_list:
             if item.company == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{t}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{temp}")
+            time.sleep(5)
+
     # Address Search Below
     elif userinput == "5":
+
+        temp = []
+
         print("Address Search Selected")
         userchoice = input("Please Enter Address >>")
         for item in contact_list:
             if item.address == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{t}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{temp}")
+            time.sleep(5)
+
     # Landline Search Below
     elif userinput == "6":
+
+        temp = []
+
         print("Phone (Landline) Search Selected")
         userchoice = input("Please Enter Address >>")
         for item in contact_list:
             if item.landline == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                    temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Mobile Search Below
     elif userinput == "7":
+
+        temp = []
+
         print("Mobile Phone Search Selected")
         userchoice = input("Please Enter Mobile Number >>")
         for item in contact_list:
             if item.mobile == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Category Search Seleted
     elif userinput == "8":
+
+        temp = []
+
         print("Category Search Selected")
         userchoice = input("Please Enter Category >>")
         for item in contact_list:
             if item.category == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Creation Date Search
     elif userinput == "9":
+
+        temp = []
+
         print("Creation Date Search Selected")
         userchoice = input("Please Enter Category >>")
         for item in contact_list:
             if item.reation_date == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Update Date Search
     elif userinput == "10":
+
+        temp = []
+
         print("Update Date Search Selected")
         userchoice = input("Please Enter Update Date >>")
         for item in contact_list:
             if item.update_date == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
+
     # Update Date Search
     elif userinput == "11":
+
+        temp = []
+
         print("Modified By Search Selected")
         userchoice = input("Please Enter Username >>")
         for item in contact_list:
             if item.modified_by == userchoice:
-                print(
-                    f"Match Found!\nFull Name: {item.fname} {item.lname}\n| Company : {item.company} | Mobile :{item.mobile} | Landline:{item.landline} |")
-                time.sleep(4)
-                break
-        else:
+                temp.append(vars(item))
+        if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
+
+        elif len(temp) ==1:
+            print("One Match Found!")
+            print(f"{temp}")
+            time.sleep(5)
+
+        else:
+            print("Multiple Matches Found!")
+            for t in temp:
+                print(f"{t}")
+            time.sleep(5)
 
 
 # Edit/Update Function
@@ -442,12 +566,12 @@ def load_data():
 
     # using CSVService read_data method to read in contacts.csv
     # Returns message to User if no file exists already
-    try:
-        instance.read_data()
-    except IOError:
-        print("File 'contacts.csv' Doesnt Exist!\n Continue and file called contacts.csv will be created!")
-        time.sleep(2)
-    return 0
+    # try:
+    instance.read_data()
+    # except IOError:
+    #     print("File 'contacts.csv' Doesnt Exist!\n Continue and file called contacts.csv will be created!")
+    #     time.sleep(2)
+    # return 0
 
     # sends list containing header to Contact object, appending to first position in contact_list
     contact_list.append(Contact(instance.header))
