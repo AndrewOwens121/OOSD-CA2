@@ -1,11 +1,15 @@
 from csv_service import CSVService  # importing CSVService, to read/write data to csv
 from contact import Contact  # importing Contacts class to structure and query contacts
-import time #Time imported to add delays
+import time  # Time imported to add delays
+from datetime import date
 
+#initilising variables and lists
 password = "Secret"
 filename = "contacts.csv"
+current_id =0
 contact_list = []
 write_list = []
+
 # creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
 
@@ -24,7 +28,7 @@ def menu():
 
 
 # Add Contact Function
-def option1():
+def option1(current_id):
     """
     Function to add a new contact to the database
     :return:
@@ -33,23 +37,43 @@ def option1():
     print("Please Enter the New Contacts Details as prompted")
 
     # gets requested info from user
-    id = input("ID: ")
     fname = input("First Name: ")
     lname = input("Last Name: ")
     company = input("Company : ")
     address = input("Address: ")
     landline = input("Landline: ")
     mobile = input("Mobile: ")
-    category = input("Category: ")
-    creation_date = input("Creation date : ")
-    update_date = input("Todays Date: ")
+
+    # Entry for Category diverts from normal, as Category needs to be choice of 3 options only
+    choice = input("""Category:
+     1) Development
+     2) Office Fitting
+     3) Support
+     >>""")
+
+    if choice == "1":
+        category = "Development"
+        print("dev selected")
+    elif choice == "2":
+        category = "Office Fitting"
+    elif choice == "3":
+        category = "Support"
+    else:
+        print("Incorrect Entry! Exiting to main menu")
+        time.sleep(2)
+        return
+
     # adds info to list
-    new_contact = [id, fname, lname, company, address, landline, mobile, category, creation_date, update_date,
+    new_contact = [current_id, fname, lname, company, address, landline, mobile, category, date.today(), date.today(),
                    username]
     # adds info, as a Contact instance, to contact list
     contact_list.append(Contact(new_contact))
 
+    #increments current_id variable
+    current_id +=1
+
     print("Successfully added Contact!")
+    time.sleep(2)
 
 
 # Search Contact Function
@@ -245,16 +269,13 @@ def option3():
 
     # Printing List of Editable attributes
     print("""Please select which field you would like to edit:
-    1:  ID
-    2:  First Name
-    3:  Last Name
-    4:  Company
-    5:  Address
-    6:  Phone (Landline)
-    7:  Phone (Mobile)
-    8:  Category (Development | Support | Office Fitting
-    9:  Date Created
-    10: Update Date
+    1:  First Name
+    2:  Last Name
+    3:  Company
+    4:  Address
+    5:  Phone (Landline)
+    6:  Phone (Mobile)
+    7:  Category (Development | Support | Office Fitting
     0:  Main Menu""")
 
     # Taking user's input of selection
@@ -263,53 +284,73 @@ def option3():
     # Actioning the users selection with Setters in Contact Class
     if user_choice == "1":
         edit = input("Please Enter The New Value: ")
-        temp.set_id(edit)
+        temp.set_fname(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
     elif user_choice == "2":
         edit = input("Please Enter The New Value: ")
-        temp.set_fname(edit)
+        temp.set_lname(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
     elif user_choice == "3":
         edit = input("Please Enter The New Value: ")
-        temp.set_lname(edit)
+        temp.set_company(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
     elif user_choice == "4":
         edit = input("Please Enter The New Value: ")
-        temp.set_company(edit)
+        temp.set_address(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
     elif user_choice == "5":
         edit = input("Please Enter The New Value: ")
-        temp.set_address(edit)
+        temp.set_landline(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
     elif user_choice == "6":
         edit = input("Please Enter The New Value: ")
-        temp.set_landline(edit)
-        temp.set_modified_by(username)
-
-    elif user_choice == "7":
-        edit = input("Please Enter The New Value: ").strip()
         temp.set_mobile(edit)
+        temp.set_update_date(date.today())
         temp.set_modified_by(username)
 
-    elif user_choice == "8":
-        edit = input("Please Enter The New Value: ")
+    # Category requires extra steps
+    elif user_choice == "7":
+        choice = input("""Please Enter The New Value:
+     1) Development
+     2) Office Fitting
+     3) Support
+     >>""")
+
+        if choice == "1":
+            edit = "Development"
+        elif choice == "2":
+            edit = "Office Fitting"
+        elif choice == "3":
+            edit = "Support"
+        else:
+            print("Incorrect Entry!")
+            time.sleep(2)
+            option6()
+
         temp.set_category(edit)
         temp.set_modified_by(username)
 
-    elif user_choice == "9":
-        edit = input("Please Enter The New Value: ")
-        temp.set_creation_date(edit)
-        temp.set_modified_by(username)
+    #Decided to not allow user to edit creation date for data itegrity
+    # elif user_choice == "8":
+    #     edit = input("Please Enter The New Value: ")
+    #     temp.set_creation_date(edit)
+    #     temp.set_modified_by(username)
 
-    elif user_choice == "10":
-        edit = input("Please Enter The New Value: ")
-        temp.set_update_date(edit)
-        temp.set_modified_by(username)
+    #Decided to not allow user to edit modified date for data itegrity
+    # elif user_choice == "9":
+    #     edit = input("Please Enter The New Value: ")
+    #     temp.set_update_date(edit)
+    #     temp.set_modified_by(username)
 
 
     # Invalid input and 0 - Returns to Main Menu
@@ -332,9 +373,9 @@ def option4():
         print("User ID not found")
 
     # Verifying that the Record selected is to be deleted
-    answer = input("Is this the User you wish to Remove? Type yes/no").lower()
+    answer = input("Is this the User you wish to Remove? Type Y/N").lower()
 
-    if answer == "yes":
+    if answer == "y":
         # Removing selected record from contact_list
         contact_list.remove(temp)
     else:
@@ -343,7 +384,6 @@ def option4():
 
 # Reports Function
 def option5():
-
     # Initialises empty list to add contacts to
     display_list = []
 
@@ -381,22 +421,33 @@ def option5():
                 print(vars(contact))
 
 
-#Exit Function
+# Exit Function
 def option6():
-    userinput=input("""***Exit Selected***
+    userinput = input("""***Exit Selected***
     Would you like to save your work? Y/N""").lower()
 
     if userinput == "y":
         write_data()
         print("Saved Successfully!")
+        time.sleep(2)
+        quit()
     else:
         print("Exit - Unsaved")
+        time.sleep(2)
+        quit()
 
 
 # Function to Read/Write to CSV file
 def load_data():
+
     # using CSVService read_data method to read in contacts.csv
-    instance.read_data()
+    # Returns message to User if no file exists already
+    try:
+        instance.read_data()
+    except IOError:
+        print("File 'contacts.csv' Doesnt Exist!\n Continue and file called contacts.csv will be created!")
+        time.sleep(2)
+    return 0
 
     # sends list containing header to Contact object, appending to first position in contact_list
     contact_list.append(Contact(instance.header))
@@ -405,23 +456,40 @@ def load_data():
     for data in instance.data:
         contact_list.append(Contact(data))
 
+
 # Function to Write to CSV faile
 def write_data():
-
     for contact in contact_list:
-        temp=[contact.get_id(),contact.get_fname(),contact.get_lname(),contact.get_company(),contact.get_address(),contact.get_landline(),contact.get_mobile(),contact.get_category(),contact.get_creation_date(),contact.get_update_date(),contact.get_modified_by()]
+        temp = [contact.get_id(), contact.get_fname(), contact.get_lname(), contact.get_company(),
+                contact.get_address(), contact.get_landline(), contact.get_mobile(), contact.get_category(),
+                contact.get_creation_date(), contact.get_update_date(), contact.get_modified_by()]
         write_list.append(temp)
     # using CSVService read_data method to read in contacts.csv
     instance.write_data(write_list)
 
 
+# Function to clear the console
 def clear_screen():
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
 
+
+# Function to scan for highest ID number in contact_list in order to assign new ID's
+def id_tracker():
+    highest_id = 0
+
+    # iterates over list, skipping first line (header)
+    for contact in contact_list[1:]:
+        temp = int(contact.get_id())
+        if temp > highest_id:
+            highest_id = temp
+
+    # returns highest ID value in CSV, and add's one for the next ID
+    return highest_id + 1
+
+
 # Main Code
 while True:
-
-    #prompting user for username
+    # prompting user for username
     username = input("Please enter your username >>")
 
     # prompting user for password
@@ -437,6 +505,9 @@ while True:
         # then pulls data into instances of Contacts oject and stores in contact_list
         load_data()
 
+        #runs id_tracker function, assigns return to variable
+        current_id = id_tracker()
+
         while True:
             # calls on menu function
             menu()
@@ -446,7 +517,7 @@ while True:
                 print("'Add a Contact' Selected")
                 time.sleep(2)
                 clear_screen()
-                option1()
+                option1(current_id)
             elif userinput == "2":
                 print("'Search for a Contact' Selected")
                 time.sleep(2)
