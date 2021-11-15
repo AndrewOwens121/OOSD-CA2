@@ -3,10 +3,10 @@ from contact import Contact  # importing Contacts class to structure and query c
 import time  # Time imported to add delays
 from datetime import date
 
-#initilising variables and lists
+# initilising variables and lists
 password = "Secret"
 filename = "contacts.csv"
-current_id =0
+current_id = 0
 contact_list = []
 write_list = []
 
@@ -14,8 +14,12 @@ write_list = []
 instance = CSVService(filename)
 
 
-# mainmenu to be called multiple times
+
 def menu():
+    """
+    Function to display the main menu
+    :return:
+    """
     clear_screen()
     print(f"""Please choose one of the options below:
     1) Add a Contact
@@ -27,7 +31,6 @@ def menu():
     """)
 
 
-# Add Contact Function
 def option1(current_id):
     """
     Function to add a new contact to the database
@@ -53,7 +56,6 @@ def option1(current_id):
 
     if choice == "1":
         category = "Development"
-        print("dev selected")
     elif choice == "2":
         category = "Office Fitting"
     elif choice == "3":
@@ -69,14 +71,13 @@ def option1(current_id):
     # adds info, as a Contact instance, to contact list
     contact_list.append(Contact(new_contact))
 
-    #increments current_id variable
-    current_id +=1
+    # increments current_id variable
+    current_id += 1
 
     print("Successfully added Contact!")
     time.sleep(2)
 
 
-# Search Contact Function
 def option2():
     """
     Function to Search Contact_list for user input covering all fields
@@ -107,8 +108,8 @@ def option2():
 
         for item in contact_list:
             if item.id == userchoice:
-                    temp.append(item.get_full_detail())
-        if len(temp)==0:
+                temp.append(item.get_full_detail())
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -130,7 +131,7 @@ def option2():
             if item.get_fname() == userchoice:
                 temp.append(item.get_full_detail())
 
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -150,7 +151,7 @@ def option2():
         for item in contact_list:
             if item.lname == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -170,7 +171,7 @@ def option2():
         for item in contact_list:
             if item.company == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -190,7 +191,7 @@ def option2():
         for item in contact_list:
             if item.address == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -209,8 +210,8 @@ def option2():
         userchoice = input("Please Enter Address >>")
         for item in contact_list:
             if item.landline == userchoice:
-                    temp.append(item.get_full_detail())
-        if len(temp)==0:
+                temp.append(item.get_full_detail())
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -230,7 +231,7 @@ def option2():
         for item in contact_list:
             if item.mobile == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -250,7 +251,7 @@ def option2():
         for item in contact_list:
             if item.category == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -270,7 +271,7 @@ def option2():
         for item in contact_list:
             if item.reation_date == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -290,7 +291,7 @@ def option2():
         for item in contact_list:
             if item.update_date == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -310,7 +311,7 @@ def option2():
         for item in contact_list:
             if item.modified_by == userchoice:
                 temp.append(item.get_full_detail())
-        if len(temp)==0:
+        if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
 
@@ -321,8 +322,11 @@ def option2():
             time.sleep(5)
 
 
-# Edit/Update Function
 def option3():
+    """
+    Function to Update/Edit records, records are selected via ID confirmation - provided by user input - edited via setters
+    :return: None
+    """
     # Taking in ID of targetted contact from user
     userID = input("Please Enter the ID of the Record to be Updated: ")
 
@@ -409,26 +413,28 @@ def option3():
         temp.set_category(edit)
         temp.set_modified_by(username)
 
-    #Decided to not allow user to edit creation date for data itegrity
+    # Decided to not allow user to edit creation date for data itegrity
     # elif user_choice == "8":
     #     edit = input("Please Enter The New Value: ")
     #     temp.set_creation_date(edit)
     #     temp.set_modified_by(username)
 
-    #Decided to not allow user to edit modified date for data itegrity
+    # Decided to not allow user to edit modified date for data itegrity
     # elif user_choice == "9":
     #     edit = input("Please Enter The New Value: ")
     #     temp.set_update_date(edit)
     #     temp.set_modified_by(username)
-
 
     # Invalid input and 0 - Returns to Main Menu
     else:
         print("Invalid Input!")
 
 
-# Remove Record Function
 def option4():
+    """
+    Function to remove a record, record selected via ID and confirmation required from user before deletion occurs
+    :return:
+    """
     # Taking in ID of targetted contact from user
     userID = input("Please Enter the ID of the Record to be Removed: ")
 
@@ -451,8 +457,11 @@ def option4():
         print("Please Choose another ID - Use the search function to find ID choice")
 
 
-# Reports Function
 def option5():
+    """
+    Function to contain the required reports
+    :return:
+    """
     # Initialises empty list to add contacts to
     display_list = []
 
@@ -490,8 +499,11 @@ def option5():
                 print(vars(contact))
 
 
-# Exit Function
 def option6():
+    """
+    Function which exits program, with option to save work to csv
+    :return:
+    """
     userinput = input("""***Exit Selected***
     Would you like to save your work? Y/N""").lower()
 
@@ -506,9 +518,11 @@ def option6():
         quit()
 
 
-# Function to Read/Write to CSV file
 def load_data():
-
+    """
+    Function to load csv file into list containing instances of Contact class
+    :return:
+    """
     # using CSVService read_data method to read in contacts.csv
     # Returns message to User if no file exists already
     # try:
@@ -526,24 +540,33 @@ def load_data():
         contact_list.append(Contact(data))
 
 
-# Function to Write to CSV faile
 def write_data():
+    """
+    Function to write the contents of the contact_list to csv file.
+    :return:
+    """
+
+    #Loops through each contact in contact_list, appends full_details to write_list
     for contact in contact_list:
-        temp = [contact.get_id(), contact.get_fname(), contact.get_lname(), contact.get_company(),
-                contact.get_address(), contact.get_landline(), contact.get_mobile(), contact.get_category(),
-                contact.get_creation_date(), contact.get_update_date(), contact.get_modified_by()]
-        write_list.append(temp)
-    # using CSVService read_data method to read in contacts.csv
+        write_list.append(contact.get_full_detail())
+
+
     instance.write_data(write_list)
 
 
-# Function to clear the console
 def clear_screen():
+    """
+    Function to clear screen and improve UX
+    :return:
+    """
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
 
 
-# Function to scan for highest ID number in contact_list in order to assign new ID's
 def id_tracker():
+    """
+    Function to scan for highest ID number in contact_list in order to assign new ID's
+    :return:
+    """
     highest_id = 0
 
     # iterates over list, skipping first line (header)
@@ -574,7 +597,7 @@ while True:
         # then pulls data into instances of Contacts oject and stores in contact_list
         load_data()
 
-        #runs id_tracker function, assigns return to variable
+        # runs id_tracker function, assigns return to variable
         current_id = id_tracker()
 
         while True:
@@ -582,31 +605,37 @@ while True:
             menu()
 
             userinput = input(">")
+
             if userinput == "1":
                 print("'Add a Contact' Selected")
                 time.sleep(2)
                 clear_screen()
                 option1(current_id)
+
             elif userinput == "2":
                 print("'Search for a Contact' Selected")
                 time.sleep(2)
                 clear_screen()
                 option2()
+
             elif userinput == "3":
                 print("'Update a Contact' Selected")
                 time.sleep(2)
                 clear_screen()
                 option3()
+
             elif userinput == "4":
                 print("'Remove a Contact' Selected")
                 time.sleep(2)
                 clear_screen()
                 option4()
+
             elif userinput == "5":
                 print("'Reports' Selected")
                 time.sleep(2)
                 clear_screen()
                 option5()
+
             elif userinput == "0":
                 print("'Exit' Selected")
                 time.sleep(2)
