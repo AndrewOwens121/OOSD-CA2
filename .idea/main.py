@@ -107,18 +107,13 @@ def option2():
 
         for item in contact_list:
             if item.id == userchoice:
-                    temp.append(vars(item))
+                    temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -133,19 +128,14 @@ def option2():
 
         for item in contact_list:
             if item.get_fname() == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
 
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -159,18 +149,13 @@ def option2():
         userchoice = input("Please Enter last Name >>")
         for item in contact_list:
             if item.lname == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -184,18 +169,13 @@ def option2():
         userchoice = input("Please Enter Company Name >>")
         for item in contact_list:
             if item.company == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{t}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{temp}")
             time.sleep(5)
@@ -209,18 +189,13 @@ def option2():
         userchoice = input("Please Enter Address >>")
         for item in contact_list:
             if item.address == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{t}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{temp}")
             time.sleep(5)
@@ -234,18 +209,13 @@ def option2():
         userchoice = input("Please Enter Address >>")
         for item in contact_list:
             if item.landline == userchoice:
-                    temp.append(vars(item))
+                    temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -259,18 +229,13 @@ def option2():
         userchoice = input("Please Enter Mobile Number >>")
         for item in contact_list:
             if item.mobile == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -284,18 +249,13 @@ def option2():
         userchoice = input("Please Enter Category >>")
         for item in contact_list:
             if item.category == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -309,18 +269,13 @@ def option2():
         userchoice = input("Please Enter Category >>")
         for item in contact_list:
             if item.reation_date == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -334,18 +289,13 @@ def option2():
         userchoice = input("Please Enter Update Date >>")
         for item in contact_list:
             if item.update_date == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
@@ -359,18 +309,13 @@ def option2():
         userchoice = input("Please Enter Username >>")
         for item in contact_list:
             if item.modified_by == userchoice:
-                temp.append(vars(item))
+                temp.append(item.get_full_detail())
         if len(temp)==0:
             print("No Match Found!")
             time.sleep(2)
 
-        elif len(temp) ==1:
-            print("One Match Found!")
-            print(f"{temp}")
-            time.sleep(5)
-
         else:
-            print("Multiple Matches Found!")
+            print("Match Found!")
             for t in temp:
                 print(f"{t}")
             time.sleep(5)
