@@ -525,12 +525,12 @@ def load_data():
     """
     # using CSVService read_data method to read in contacts.csv
     # Returns message to User if no file exists already
-    # try:
-    instance.read_data()
-    # except IOError:
-    #     print("File 'contacts.csv' Doesnt Exist!\n Continue and file called contacts.csv will be created!")
-    #     time.sleep(2)
-    # return 0
+    try:
+        instance.read_data()
+    except IOError:
+        print("File 'contacts.csv' Doesnt Exist!\nPlease create contacts.csv and re-run program")
+        quit()
+        time.sleep(2)
 
     # sends list containing header to Contact object, appending to first position in contact_list
     contact_list.append(Contact(instance.header))
@@ -545,10 +545,15 @@ def write_data():
     Function to write the contents of the contact_list to csv file.
     :return:
     """
+    try:
+        #Loops through each contact in contact_list, appends full_details to write_list
+        for contact in contact_list:
+            write_list.append(contact.get_full_detail())
+    except IOError:
+        print("Error while writing to contacts.csv - Please ensure file is not open elsewhere and try again!")
+        time.sleep(2)
 
-    #Loops through each contact in contact_list, appends full_details to write_list
-    for contact in contact_list:
-        write_list.append(contact.get_full_detail())
+
 
 
     instance.write_data(write_list)

@@ -7,7 +7,7 @@ class CSVService:
         self.data = []
 
     def read_data(self):
-        with open(self.filename) as csvfile:
+        with open(self.filename, "w") as csvfile:
             readCSV = csv.reader(csvfile, delimiter = ',')
             self.header = next(readCSV)
             for row in readCSV:
