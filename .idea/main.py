@@ -1,6 +1,6 @@
 from csv_service import CSVService  # importing CSVService, to read/write data to csv
 from contact import Contact  # importing Contacts class to structure and query contacts
-from addressbook import Addressbook # importing Addressbook class to store structured data
+from addressbook import Addressbook  # importing Addressbook class to store structured data
 import time  # Time imported to add delays
 from datetime import date
 
@@ -16,7 +16,6 @@ instance = CSVService(filename)
 
 # creating instance of Addressbook
 IT_Solutions = Addressbook("IT_Solutions")
-
 
 
 def menu():
@@ -521,17 +520,15 @@ def load_data():
         IT_Solutions.contact_list.append(Contact(data))
 
 
-
 def write_data():
     """
     Function to write the contents of the contact_list to csv file.
     :return:
     """
 
-    #Loops through each contact in contact_list, appends full_details to write_list
+    # Loops through each contact in contact_list, appends full_details to write_list
     for contact in IT_Solutions.contact_list:
         write_list.append(contact.get_full_detail())
-
 
     instance.write_data(write_list)
 

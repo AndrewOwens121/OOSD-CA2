@@ -3,7 +3,7 @@ class Addressbook:
         self.addressbookname = addressbookname
         self.contact_list = []
 
-    # Search method below - All return a list of the search matches
+    # Search methods below - All return a list of the search matches
 
     def id_search(self, search_id):
         search_result = []
