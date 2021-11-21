@@ -1,5 +1,6 @@
 from csv_service import CSVService  # importing CSVService, to read/write data to csv
 from contact import Contact  # importing Contacts class to structure and query contacts
+from addressbook import Addressbook # importing Addressbook class to store structured data
 import time  # Time imported to add delays
 from datetime import date
 
@@ -12,6 +13,9 @@ write_list = []
 
 # creating an instance of the CSVService class and passing it the contacts.csv filename
 instance = CSVService(filename)
+
+# creating instance of Addressbook
+IT_Solutions = Addressbook("IT_Solutions")
 
 
 
@@ -69,7 +73,7 @@ def option1(current_id):
     new_contact = [current_id, fname, lname, company, address, landline, mobile, category, date.today(), date.today(),
                    username]
     # adds info, as a Contact instance, to contact list
-    contact_list.append(Contact(new_contact))
+    IT_Solutions.contact_list.append(Contact(new_contact))
 
     # increments current_id variable
     current_id += 1
@@ -93,7 +97,8 @@ def option2():
     7:  Phone (Mobile)
     8:  Category (Development | Support | Office Fitting
     9:  Date Created
-    10: Modified by (Person's Name)""")
+    10: Date Updated
+    11: Modified by (Person's Name)""")
 
     userinput = input("Please Enter Search Choice >>")
     clear_screen()
@@ -101,40 +106,31 @@ def option2():
     # ID Search Below
     if userinput == "1":
 
-        temp = []
-
         print("ID Search Selected")
         userchoice = input("Please Enter ID >>")
 
-        for item in contact_list:
-            if item.id == userchoice:
-                temp.append(item.get_full_detail())
+        temp = IT_Solutions.id_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
-
         else:
             print("Match Found!")
-            for t in temp:
-                print(f"{t}")
+        for t in temp:
+            print(f"{t}")
             time.sleep(5)
 
     # First Name Search below
     elif userinput == "2":
 
-        temp = []
-
         print("First Name Search Selected")
         userchoice = input("Please Enter First Name >>")
 
-        for item in contact_list:
-            if item.get_fname() == userchoice:
-                temp.append(item.get_full_detail())
+        temp = IT_Solutions.fname_search(userchoice)
 
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
-
         else:
             print("Match Found!")
             for t in temp:
@@ -144,13 +140,11 @@ def option2():
     # Last Name Search below
     elif userinput == "3":
 
-        temp = []
-
         print("Last Name Search Selected")
         userchoice = input("Please Enter last Name >>")
-        for item in contact_list:
-            if item.lname == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.lname_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -164,13 +158,11 @@ def option2():
     # Company Search Below
     elif userinput == "4":
 
-        temp = []
-
         print("Company Search Selected")
         userchoice = input("Please Enter Company Name >>")
-        for item in contact_list:
-            if item.company == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.company_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -184,13 +176,11 @@ def option2():
     # Address Search Below
     elif userinput == "5":
 
-        temp = []
-
         print("Address Search Selected")
         userchoice = input("Please Enter Address >>")
-        for item in contact_list:
-            if item.address == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.address_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -204,13 +194,11 @@ def option2():
     # Landline Search Below
     elif userinput == "6":
 
-        temp = []
-
         print("Phone (Landline) Search Selected")
-        userchoice = input("Please Enter Address >>")
-        for item in contact_list:
-            if item.landline == userchoice:
-                temp.append(item.get_full_detail())
+        userchoice = input("Please Enter Landline >>")
+
+        temp = IT_Solutions.landline_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -224,13 +212,11 @@ def option2():
     # Mobile Search Below
     elif userinput == "7":
 
-        temp = []
-
         print("Mobile Phone Search Selected")
         userchoice = input("Please Enter Mobile Number >>")
-        for item in contact_list:
-            if item.mobile == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.mobile_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -244,13 +230,11 @@ def option2():
     # Category Search Seleted
     elif userinput == "8":
 
-        temp = []
-
         print("Category Search Selected")
         userchoice = input("Please Enter Category >>")
-        for item in contact_list:
-            if item.category == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.category_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -264,13 +248,11 @@ def option2():
     # Creation Date Search
     elif userinput == "9":
 
-        temp = []
-
         print("Creation Date Search Selected")
         userchoice = input("Please Enter Category >>")
-        for item in contact_list:
-            if item.reation_date == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.creation_date_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -284,13 +266,11 @@ def option2():
     # Update Date Search
     elif userinput == "10":
 
-        temp = []
-
         print("Update Date Search Selected")
         userchoice = input("Please Enter Update Date >>")
-        for item in contact_list:
-            if item.update_date == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.update_date_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -301,16 +281,14 @@ def option2():
                 print(f"{t}")
             time.sleep(5)
 
-    # Update Date Search
+    # Modified by Search
     elif userinput == "11":
-
-        temp = []
 
         print("Modified By Search Selected")
         userchoice = input("Please Enter Username >>")
-        for item in contact_list:
-            if item.modified_by == userchoice:
-                temp.append(item.get_full_detail())
+
+        temp = IT_Solutions.modified_by_search(userchoice)
+
         if len(temp) == 0:
             print("No Match Found!")
             time.sleep(2)
@@ -327,18 +305,21 @@ def option3():
     Function to Update/Edit records, records are selected via ID confirmation - provided by user input - edited via setters
     :return: None
     """
+
     # Taking in ID of targetted contact from user
     userID = input("Please Enter the ID of the Record to be Updated: ")
 
-    # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
-    for con in contact_list:
-        if userID == con.id:
-            temp = con
-            print(f"User '{con.fname} {con.lname}' Selected")
-            time.sleep(2)
-            break
-    else:
+    # using Addressbook method, to find record matching UserID - Storing pointer to that record in temp variable
+    temp = IT_Solutions.edit_search(userID)
+
+    if temp == None:
         print("User ID not found")
+        time.sleep(2)
+        return
+
+    else:
+        print(f"User '{temp.get_fname()} {temp.get_lname()}' Selected")
+        time.sleep(2)
 
     # Printing List of Editable attributes
     print("""Please select which field you would like to edit:
@@ -438,21 +419,24 @@ def option4():
     # Taking in ID of targetted contact from user
     userID = input("Please Enter the ID of the Record to be Removed: ")
 
-    # Searching list, to find record matching UserID - Storing pointer to that record in temp variable
-    for con in contact_list:
-        if userID == con.id:
-            temp = con
-            print(f"User '{con.fname} {con.lname}' Selected")
-            break
-    else:
+    # Using Edit_search Method to find record matching UserID - Storing pointer to that record in temp variable
+    temp = IT_Solutions.edit_search(userID)
+
+    if temp == None:
         print("User ID not found")
+        time.sleep(2)
+        return
+
+    else:
+        print(f"User '{temp.get_fname()} {temp.get_lname()}' Selected")
+        time.sleep(2)
 
     # Verifying that the Record selected is to be deleted
     answer = input("Is this the User you wish to Remove? Type Y/N").lower()
 
     if answer == "y":
         # Removing selected record from contact_list
-        contact_list.remove(temp)
+        IT_Solutions.contact_list.remove(temp)
     else:
         print("Please Choose another ID - Use the search function to find ID choice")
 
@@ -474,29 +458,26 @@ def option5():
 
     # Conditionals to choose which report to run
     if userinput == "1":
-        for contact in contact_list:
+        for contact in IT_Solutions.full_contact_list():
             print(contact.get_full_detail())
 
     if userinput == "2":
         print("Development Category List:")
-        for contact in contact_list:
-            if contact.get_category() == "Development":
-                display_list.append(contact)
-                print(vars(contact))
+        for contact in IT_Solutions.development_list():
+            print(contact.get_full_detail())
+        time.sleep(5)
 
     if userinput == "3":
         print("Support Category List:")
-        for contact in contact_list:
-            if contact.get_category() == "Support":
-                display_list.append(contact)
-                print(vars(contact))
+        for contact in IT_Solutions.support_list():
+            print(contact.get_full_detail())
+        time.sleep(5)
 
     if userinput == "4":
         print("Support Office Fitting List:")
-        for contact in contact_list:
-            if contact.get_category() == "Office Fitting":
-                display_list.append(contact)
-                print(vars(contact))
+        for contact in IT_Solutions.office_fitting_list():
+            print(contact.get_full_detail())
+        time.sleep(5)
 
 
 def option6():
@@ -533,11 +514,12 @@ def load_data():
     # return 0
 
     # sends list containing header to Contact object, appending to first position in contact_list
-    contact_list.append(Contact(instance.header))
+    IT_Solutions.contact_list.append(Contact(instance.header))
 
     # Loops through lists contained within instance.data, adding each entry as a Contact object after header in contact_list
     for data in instance.data:
-        contact_list.append(Contact(data))
+        IT_Solutions.contact_list.append(Contact(data))
+
 
 
 def write_data():
@@ -547,7 +529,7 @@ def write_data():
     """
 
     #Loops through each contact in contact_list, appends full_details to write_list
-    for contact in contact_list:
+    for contact in IT_Solutions.contact_list:
         write_list.append(contact.get_full_detail())
 
 
@@ -567,13 +549,7 @@ def id_tracker():
     Function to scan for highest ID number in contact_list in order to assign new ID's
     :return:
     """
-    highest_id = 0
-
-    # iterates over list, skipping first line (header)
-    for contact in contact_list[1:]:
-        temp = int(contact.get_id())
-        if temp > highest_id:
-            highest_id = temp
+    highest_id = IT_Solutions.highest_id()
 
     # returns highest ID value in CSV, and add's one for the next ID
     return highest_id + 1
